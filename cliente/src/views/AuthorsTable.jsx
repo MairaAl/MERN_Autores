@@ -18,10 +18,15 @@ function AuthorsTable() {
         console.log(err);
       });
   }, [setAuthor]);
+  const removeFromDom = (authorId) => {
+    setAuthor(author.filter((author) => author._id !== authorId));
+  };
   return (
     <div>
       <h3>Authors List</h3>
-      {loaded && <AuthorsList author={author.authors} />}
+      {loaded && (
+        <AuthorsList author={author.authors} removeFromDom={removeFromDom} />
+      )}
       <h3>Authors Form</h3>
       <AuthorsForm />
     </div>
